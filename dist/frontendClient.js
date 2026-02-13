@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import MerkleDistributorABI from "./abi/MerkleDistributor.json" assert { type: "json" };
+import { ZKMERKLEDISTRIBUTOR_ABI } from "./abi/ZKMerkleDistributor.js";
 export class FrontendClient {
     constructor(config) {
         this.config = config;
@@ -7,7 +7,7 @@ export class FrontendClient {
     async claimRewards(provider, rootIndex, totalClaimAmount, merkleProof, signer) {
         // Use injected provider if signer not provided
         const effectiveSigner = signer || (await new ethers.BrowserProvider(globalThis.ethereum).getSigner());
-        const contract = new ethers.Contract(this.config.network.addresses.merkleDistributor, MerkleDistributorABI, effectiveSigner);
+        const contract = new ethers.Contract(this.config.network.addresses.merkleDistributor, ZKMERKLEDISTRIBUTOR_ABI, effectiveSigner);
         return await contract.claimRewards(provider, rootIndex, totalClaimAmount, merkleProof);
     }
 }

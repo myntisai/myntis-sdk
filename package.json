@@ -1,13 +1,73 @@
 {
   "name": "@myntis/sdk",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Self-sufficient TypeScript SDK for Myntis Protocol with built-in ZK proof generation",
   "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myntis/myntis-sdk.git"
+  },
+  "keywords": [
+    "myntis",
+    "protocol",
+    "blockchain",
+    "base",
+    "layer2",
+    "zk-proofs",
+    "merkle-tree",
+    "staking",
+    "defi"
+  ],
+  "author": "Myntis",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "module": "dist/index.js",
-  "exports": { ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" } },
-  "scripts": { "build": "tsc -p tsconfig.json", "clean": "rm -rf dist" },
-  "dependencies": { "ethers": "^6.12.0" },
-  "devDependencies": { "typescript": "^5.4.0" }
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./abi": {
+      "import": "./dist/abi/index.js",
+      "types": "./dist/abi/index.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./config": {
+      "import": "./dist/config/index.js",
+      "types": "./dist/config/index.d.ts"
+    },
+    "./merkle": {
+      "import": "./dist/merkle/index.js",
+      "types": "./dist/merkle/index.d.ts"
+    },
+    "./zk": {
+      "import": "./dist/zk/index.js",
+      "types": "./dist/zk/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "zk-circuits"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "dependencies": {
+    "ethers": "^6.12.0",
+    "keccak256": "^1.0.6",
+    "merkletreejs": "^0.3.11",
+    "snarkjs": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/snarkjs": "^0.7.9",
+    "typedoc": "^0.28.16",
+    "typescript": "^5.4.0"
+  }
 }

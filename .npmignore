@@ -1,0 +1,23 @@
+# Source files (only publish dist/)
+src/
+tsconfig.json
+
+# Development files
+node_modules/
+*.log
+.DS_Store
+
+# Tests (if any)
+test/
+tests/
+*.test.ts
+*.spec.ts
+
+# Documentation source (keep README.md and SELF_SUFFICIENT_USAGE.md)
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Development tools
+.eslintrc
+.prettierrc

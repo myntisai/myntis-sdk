@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import type { SDKConfig } from "./types";
-import MerkleDistributorABI from "./abi/MerkleDistributor.json" assert { type: "json" };
+import { ZKMERKLEDISTRIBUTOR_ABI } from "./abi/ZKMerkleDistributor.js";
 
 export class FrontendClient {
   private config: SDKConfig;
@@ -19,7 +19,7 @@ export class FrontendClient {
     const effectiveSigner = signer || (await new ethers.BrowserProvider((globalThis as any).ethereum).getSigner());
     const contract = new ethers.Contract(
       this.config.network.addresses.merkleDistributor,
-      MerkleDistributorABI as any,
+      ZKMERKLEDISTRIBUTOR_ABI as any,
       effectiveSigner
     );
     return await contract.claimRewards(provider, rootIndex, totalClaimAmount, merkleProof);

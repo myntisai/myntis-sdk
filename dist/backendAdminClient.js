@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import MerkleDistributorABI from "./abi/MerkleDistributor.json" assert { type: "json" };
+import { ZKMERKLEDISTRIBUTOR_ABI } from "./abi/ZKMerkleDistributor.js";
 export class BackendAdminClient {
     constructor(config, adminPrivateKey) {
         if (!config.network.rpcUrl) {
@@ -10,7 +10,7 @@ export class BackendAdminClient {
         this.wallet = new ethers.Wallet(adminPrivateKey, this.provider);
     }
     getContract() {
-        return new ethers.Contract(this.config.network.addresses.merkleDistributor, MerkleDistributorABI, this.wallet);
+        return new ethers.Contract(this.config.network.addresses.merkleDistributor, ZKMERKLEDISTRIBUTOR_ABI, this.wallet);
     }
     async submitMerkleRoot(merkleRoot, expiry) {
         const contract = this.getContract();
