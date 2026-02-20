@@ -2,6 +2,10 @@
 
 All notable changes to this project are documented in this file.
 
+## 1.0.2 - 2026-02-20
+
+- meta: fixed npm repository link to `github.com/myntisai/myntis-sdk`
+
 ## 1.0.1 - 2026-02-20
 
 - docs: clarified runtime modes (`fromPrivateKey`, `fromBrowserProvider`, `readOnly`)
