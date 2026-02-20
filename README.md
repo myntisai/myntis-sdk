@@ -9,7 +9,7 @@
 ✅ **Complete Contract Coverage** - All 6 core contracts
 ✅ **Merkle Tree Builder** - Exact contract-compatible format
 ✅ **Liquid Staking** - ERC-4626 vault operations
-✅ **Multi-Environment** - Node.js and browser support
+✅ **Multi-Environment** - Node.js + browser read support
 
 ## Installation
 
@@ -18,6 +18,21 @@ npm install @myntis/sdk
 ```
 
 The SDK includes ZK circuit files (~3MB) for proof generation.
+
+## Runtime Modes
+
+```typescript
+// Full read + write (recommended for providers/agents)
+MyntisSDK.fromPrivateKey(privateKey, { rpcUrl: 'https://mainnet.base.org' });
+
+// Browser provider (currently read-oriented; write ops require signer wiring)
+MyntisSDK.fromBrowserProvider(window.ethereum);
+
+// Read-only mode
+MyntisSDK.readOnly('https://mainnet.base.org');
+```
+
+If you need guaranteed write operations today, use `fromPrivateKey`.
 
 ## Quick Start
 
@@ -78,6 +93,16 @@ await sdk.agent.claim(claimData);
 await sdk.agent.depositToVault(1000n * 10n ** 18n);
 ```
 
+### Frontend (Browser Read Usage)
+
+```typescript
+import { MyntisSDK } from '@myntis/sdk';
+
+const sdk = MyntisSDK.fromBrowserProvider(window.ethereum);
+const tvl = await sdk.read.getVaultTotalAssets();
+console.log('Vault TVL:', tvl.toString());
+```
+
 ## ZK Proof Generation (Built-in)
 
 The SDK includes:
@@ -118,8 +143,12 @@ Without ZK proofs, the protocol is just yield farming. ZK proofs ensure:
   emissionsContract: '0x803f9694bE31D3ACe5792C21ab9F72b69838C0e0',
   zkMerkleDistributor: '0xfF52fdA700CaF238F9fE3bea3091E863aA00EADc',
   liquidStakingVault: '0x019cB2AA19465Ca1e140AbeADF13320414031C6B',
+  globalSupplyRegistry: '0xdFb3b8107B33d54BAe402a76BbA1432668B2D896',
+  groth16Verifier: '0x19559C2D4C7c50Bf3D8852b6ecfC0185d3E9796c',
 }
 ```
+
+Base Sepolia has no built-in default addresses in this release. Provide `addresses` explicitly when using `chainId: 84532`.
 
 ## API Reference
 
@@ -154,3 +183,4 @@ Without ZK proofs, the protocol is just yield farming. ZK proofs ensure:
 | `getVaultTotalAssets()` | Total MYNT in vault |
 
 See SELF_SUFFICIENT_USAGE.md for advanced usage.
+See CHANGELOG.md for release history.

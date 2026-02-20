@@ -1,12 +1,12 @@
 {
   "name": "@myntis/sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Self-sufficient TypeScript SDK for Myntis Protocol with built-in ZK proof generation",
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/myntis/myntis-sdk.git"
+    "url": "git+https://github.com/myntis/myntis-sdk.git"
   },
   "keywords": [
     "myntis",

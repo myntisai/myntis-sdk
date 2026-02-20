@@ -12,6 +12,12 @@ The Myntis Protocol SDK is **completely self-sufficient**. No backend APIs, no e
 ✅ **ethers.js** (for contract interaction)
 ✅ **Merkle tree builder** (exact contract format)
 
+## Runtime Recommendation
+
+- Use `MyntisSDK.fromPrivateKey(...)` for full read/write workflows.
+- `MyntisSDK.fromBrowserProvider(...)` is currently best for read-oriented frontend flows.
+- Use `MyntisSDK.readOnly(...)` for backend monitoring/indexing without signing.
+
 ## Independent Provider Setup
 
 ```typescript

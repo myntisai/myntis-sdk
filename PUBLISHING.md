@@ -3,7 +3,7 @@
 ## Prerequisites
 
 1. **npm account**: You need an npm account with access to the `@myntis` scope
-2. **Login to npm**: Run `npm login` first
+2. **Login to npm**: Run `npm login` first (or use a granular token in CI)
 
 ## Pre-publish Checklist
 
@@ -49,10 +49,12 @@ npm publish --access public
 npm publish
 ```
 
+If your account enforces security key/WebAuthn for 2FA, CLI publish typically requires a granular npm token with publish scope and bypass 2FA enabled.
+
 ### 5. Verify publication
 ```bash
 npm info @myntis/sdk
-# Should show version 1.0.0 and all metadata
+# Should show the latest version and metadata
 
 # Try installing in a test project
 mkdir test-install && cd test-install
@@ -69,9 +71,9 @@ Follow semantic versioning (semver):
 
 Update version:
 ```bash
-npm version patch   # 1.0.0 -> 1.0.1
-npm version minor   # 1.0.0 -> 1.1.0
-npm version major   # 1.0.0 -> 2.0.0
+npm version patch   # 1.0.x -> 1.0.(x+1)
+npm version minor   # 1.x.0 -> 1.(x+1).0
+npm version major   # x.0.0 -> (x+1).0.0
 ```
 
 ## Troubleshooting
@@ -130,4 +132,4 @@ git push origin v1.0.0
 After publishing, your package will be available at:
 - **npm**: https://www.npmjs.com/package/@myntis/sdk
 - **Install**: `npm install @myntis/sdk`
-- **CDN**: https://unpkg.com/@myntis/sdk@1.0.0/
+- **CDN**: https://unpkg.com/@myntis/sdk@<version>/
